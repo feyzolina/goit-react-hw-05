@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styles from './MovieDetailsPage.module.css';
 import MovieCast from '../../components/MovieCast/MovieCast';
 import MovieReviews from '../../components/MovieReviews/MovieReviews';
@@ -8,10 +8,13 @@ import MovieReviews from '../../components/MovieReviews/MovieReviews';
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState(null);
+  
+  const prevLocation = useRef(location.state?.from || '/movies');
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -38,14 +41,14 @@ const MovieDetailsPage = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
- const handleTabSwitch = (tab) => {
-    setActiveTab(tab); 
+  const handleTabSwitch = (tab) => {
+    setActiveTab(tab);
     navigate(`/movies/${movieId}/${tab}`);
   };
 
   return (
     <div className={styles.container}>
-      <button className={styles.goBackButton} onClick={() => navigate(-1)}>
+      <button className={styles.goBackButton} onClick={() => navigate(prevLocation.current)}>
         Go Back
       </button>
 
@@ -83,6 +86,7 @@ const MovieDetailsPage = () => {
           Reviews
         </button>
       </div>
+      
       {activeTab === 'cast' && <MovieCast movieId={movieId} />}
       {activeTab === 'reviews' && <MovieReviews movieId={movieId} />}
     </div>

@@ -7,7 +7,7 @@ const MovieList = ({ movies }) => {
     <div className={styles.movieList}>
       {movies.map((movie) => (
         <div key={movie.id} className={styles.movieListItem}>
-          <Link to={`/movies/${movie.id}`} state={{ from: 'movies' }}>
+          <Link to={`/movies/${movie.id}`} state={{ from: '/movies' }}>
             {movie.poster_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

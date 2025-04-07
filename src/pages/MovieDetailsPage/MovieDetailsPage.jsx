@@ -30,11 +30,17 @@ const MovieDetailsPage = () => {
     fetchMovieDetails();
   }, [movieId]);
 
+  useEffect(() => {
+    const currentPath = window.location.pathname.split('/').pop();
+    setActiveTab(currentPath);
+  }, [movieId]);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
-  const handleTabSwitch = (tab) => {
-    setActiveTab(tab);
+ const handleTabSwitch = (tab) => {
+    setActiveTab(tab); 
+    navigate(`/movies/${movieId}/${tab}`);
   };
 
   return (

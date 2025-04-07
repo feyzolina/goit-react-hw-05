@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import styles from './MovieReviews.module.css';  // CSS Modülünü import ediyoruz
+import styles from './MovieReviews.module.css';
 
 const MovieReviews = () => {
   const { movieId } = useParams();

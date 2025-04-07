@@ -11,7 +11,7 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [activeTab, setActiveTab] = useState('cast'); // İlk başta cast sekmesi açık
+  const [activeTab, setActiveTab] = useState(null);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -34,7 +34,7 @@ const MovieDetailsPage = () => {
   if (error) return <div>{error}</div>;
 
   const handleTabSwitch = (tab) => {
-    setActiveTab(tab);  // Aktif olan sekmeyi değiştir
+    setActiveTab(tab);
   };
 
   return (
@@ -77,8 +77,6 @@ const MovieDetailsPage = () => {
           Reviews
         </button>
       </div>
-
-      {/* Aktif sekmeye göre içerik */}
       {activeTab === 'cast' && <MovieCast movieId={movieId} />}
       {activeTab === 'reviews' && <MovieReviews movieId={movieId} />}
     </div>

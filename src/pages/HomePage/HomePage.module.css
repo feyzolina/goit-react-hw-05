@@ -1,16 +1,18 @@
 .container {
     padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
+    text-align: left;
+    padding: 10px;
+    font-size: 30px;
+    
 }
 
 .navigation {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     margin-bottom: 20px;
 }
 
@@ -20,6 +22,7 @@
     margin: 0 10px;
     background-color: #007bff;
     color: white;
+    border-radius: 5px;
 }
 
 .navButton:hover {
@@ -27,18 +30,32 @@
 }
 
 .movieList {
-    margin-top: 20px;
-    padding: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+
+
+.movieList h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
 }
 
 .movieItem {
     margin-bottom: 10px;
+    
 }
 
 .movieLink {
     text-decoration: none;
     color: #000;
+    
 }
+
 
 .movieLink:hover {
     color: #007bff;

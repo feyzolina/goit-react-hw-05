@@ -8,7 +8,6 @@ const MovieList = ({ movies }) => {
       {movies.map((movie) => (
         <div key={movie.id} className={styles.movieListItem}>
           <Link to={`/movies/${movie.id}`} state={{ from: 'movies' }}>
-            {/* Film resmini ve ismini gösteriyoruz */}
             {movie.poster_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

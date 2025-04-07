@@ -1,12 +1,9 @@
-/* MovieDetailsPage.module.css */
-
 .container {
     padding: 20px;
     font-family: Arial, sans-serif;
     color: #333;
 }
 
-/* Geri Git Butonu */
 .goBackButton {
     padding: 10px 15px;
     font-size: 16px;
@@ -22,7 +19,6 @@
     background-color: #0056b3;
 }
 
-/* Film Başlığı ve Bilgileri */
 .movieHeader {
     display: flex;
     align-items: flex-start;
@@ -63,7 +59,6 @@
     margin-top: 10px;
 }
 
-/* Butonlar */
 .buttonContainer {
     margin-top: 20px;
     display: flex;

@@ -1,52 +1,70 @@
-/* MoviesPage.module.css */
-
 .container {
-    padding: 20px;
+  padding: 20px;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.homeButton, .activeButton {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.homeButton:hover {
+  background-color: #0056b3;
+}
+
+.activeButton {
+  background-color: #0056b3;
+  cursor: default;
 }
 
 .searchForm {
-    display: flex;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: left;
+  margin-bottom: 20px;
 }
 
 .searchInput {
-    padding: 10px;
-    font-size: 16px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    width: 300px;
-}
-
-.searchInput:focus {
-    outline: none;
-    border-color: #007bff;
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 .searchButton {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 .searchButton:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
-.movieList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.loading, .error {
+  text-align: left;
+  font-size: 18px;
+  color: #888;
+  margin-top: 20px;
 }
 
-.movieListItem {
-    width: 200px;
-    cursor: pointer;
-}
-
-.movieListItem img {
-    width: 100%;
-    border-radius: 8px;
+.noResults {
+  text-align: left;
+  font-size: 20px;
+  color: red;
+  margin-top: 20px;
 }

@@ -39,17 +39,22 @@ const MovieCast = () => {
   return (
     <div className={styles.container}>
       <h3>Cast</h3>
-      <ul className={styles.castList}>
-        {cast.map((actor) => (
-          <li key={actor.cast_id} className={styles.castItem}>
-            <img
-              src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-              alt={actor.name}
-            />
-            <p>{actor.name} as {actor.character}</p>
-          </li>
-        ))}
-      </ul>
+      {cast.length === 0 ? (
+        <p>No cast available</p>
+      ) : (
+        <ul className={styles.castList}>
+          {cast.map((actor) => (
+            <li key={actor.cast_id} className={styles.castItem}>
+              <img
+                src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                alt={actor.name}
+                className={styles.actorImage}
+              />
+              <p>{actor.name} as {actor.character}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

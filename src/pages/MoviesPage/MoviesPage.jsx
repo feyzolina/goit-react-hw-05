@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import MovieList from '../../components/MovieList/MovieList'; // MovieList bileşenini import ediyoruz
+import MovieList from '../../components/MovieList/MovieList';
+import { useNavigate } from 'react-router-dom';
 import styles from './MoviesPage.module.css';
 
 const MoviesPage = () => {
@@ -8,9 +9,10 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (searchQuery === '') return;  // Eğer arama yapılmamışsa hiç bir şey yapma
+    if (searchQuery === '') return;
 
     const fetchMovies = async () => {
       setLoading(true);
@@ -36,14 +38,20 @@ const MoviesPage = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    setSearchQuery(searchQuery); // Arama sorgusunu günceller
+    if (searchQuery.trim() !== '') {
+      setSearchQuery(searchQuery);
+    }
   };
 
   return (
     <div className={styles.container}>
+      <div className={styles.pageHeader}>
+        <button className={styles.homeButton} onClick={() => navigate('/')}>Home</button>
+        <button className={styles.activeButton}>Movies</button>
+      </div>
+
       <h1>Movies</h1>
 
-      {/* Arama butonunu kaldırıp doğrudan input kutusunu yerleştiriyoruz */}
       <form onSubmit={handleSearchSubmit} className={styles.searchForm}>
         <input
           type="text"
@@ -57,18 +65,16 @@ const MoviesPage = () => {
         </button>
       </form>
 
-      {loading && <div>Loading...</div>}
-      {error && <div>{error}</div>}
+      {loading && <div className={styles.loading}>Loading...</div>}
+      {error && <div className={styles.error}>{error}</div>}
 
-      {/* Arama yapılmışsa ve sonuç bulunamamışsa "No movies found" mesajını göster */}
       {searchQuery && movies.length === 0 && !loading && !error && (
-        <div>No movies found</div>
+        <div className={styles.noResults}>No movies found</div>
       )}
 
-      {/* Filmler ve hata durumları */}
       <div>
         {movies.length > 0 && !loading && (
-          <MovieList movies={movies} /> // Filmleri listeleyecek olan MovieList bileşeni
+          <MovieList movies={movies} />
         )}
       </div>
     </div>

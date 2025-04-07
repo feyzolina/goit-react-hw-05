@@ -11,7 +11,7 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [activeSection, setActiveSection] = useState(''); // Aktif olan bölümü kontrol etmek için state
+  const [activeTab, setActiveTab] = useState('cast'); // İlk başta cast sekmesi açık
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -33,12 +33,8 @@ const MovieDetailsPage = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
-  const handleToggleSection = (section) => {
-    if (activeSection === section) {
-      setActiveSection(''); // Eğer tıklanan bölüm zaten aktifse, onu kaldır
-    } else {
-      setActiveSection(section); // Yeni bölüm aktif hale getir
-    }
+  const handleTabSwitch = (tab) => {
+    setActiveTab(tab);  // Aktif olan sekmeyi değiştir
   };
 
   return (
@@ -47,32 +43,44 @@ const MovieDetailsPage = () => {
         Go Back
       </button>
 
-      <h1 className={styles.title}>{movie.title}</h1>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title}
-        className={styles.poster}
-      />
-      <p className={styles.overview}>{movie.overview}</p>
-      <p className={styles.releaseYear}>({movie.release_date.slice(0, 4)})</p>
+      <div className={styles.movieHeader}>
+        <img 
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+          alt={movie.title} 
+          className={styles.poster} 
+        />
+        <div className={styles.movieInfo}>
+          <h1 className={styles.title}>
+            {movie.title} ({new Date(movie.release_date).getFullYear()})
+          </h1>
+          <p className={styles.userScore}>
+            User Score: {movie.vote_average * 10}%
+          </p>
+          <p className={styles.overview}>{movie.overview}</p>
+          <p className={styles.genres}>
+            Genres: {movie.genres.map(genre => genre.name).join(', ')}
+          </p>
+        </div>
+      </div>
 
       <div className={styles.buttonContainer}>
         <button 
-          onClick={() => handleToggleSection('cast')} 
-          className={styles.button}
+          onClick={() => handleTabSwitch('cast')} 
+          className={activeTab === 'cast' ? styles.activeButton : styles.button}
         >
           Cast
         </button>
         <button 
-          onClick={() => handleToggleSection('reviews')} 
-          className={styles.button}
+          onClick={() => handleTabSwitch('reviews')} 
+          className={activeTab === 'reviews' ? styles.activeButton : styles.button}
         >
           Reviews
         </button>
       </div>
 
-      {activeSection === 'cast' && <MovieCast movieId={movieId} />}
-      {activeSection === 'reviews' && <MovieReviews movieId={movieId} />}
+      {/* Aktif sekmeye göre içerik */}
+      {activeTab === 'cast' && <MovieCast movieId={movieId} />}
+      {activeTab === 'reviews' && <MovieReviews movieId={movieId} />}
     </div>
   );
 };

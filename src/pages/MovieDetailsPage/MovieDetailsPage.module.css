@@ -1,70 +1,93 @@
+/* MovieDetailsPage.module.css */
+
 .container {
     padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
 }
 
+/* Geri Git Butonu */
 .goBackButton {
-    margin-bottom: 20px;
     padding: 10px 15px;
-    background-color: #007BFF;
+    font-size: 16px;
+    background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .goBackButton:hover {
     background-color: #0056b3;
 }
 
-.title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.details {
+/* Film Başlığı ve Bilgileri */
+.movieHeader {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 20px;
+    gap: 20px;
 }
 
 .poster {
     width: 200px;
-    /* Poster boyutunu burada ayarlayabilirsiniz */
-    height: auto;
-    margin-right: 20px;
-    /* Resim ile metin arasındaki boşluk */
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-.info {
-    flex-grow: 1;
-    /* Film bilgileri sağda tam genişlikte olacak */
+.movieInfo {
+    max-width: 700px;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+
+.userScore {
+    font-size: 18px;
+    color: #4caf50;
+    margin-top: 10px;
 }
 
 .overview {
-    font-size: 1rem;
-    margin-top: 15px;
-    text-align: left;
-}
-
-.buttonContainer {
+    font-size: 16px;
+    line-height: 1.6;
     margin-top: 20px;
 }
 
+.genres {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Butonlar */
+.buttonContainer {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
 .button {
-    padding: 10px 20px;
-    background-color: #28a745;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
-    margin-right: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
-.button:hover {
-    background-color: #218838;
-}
-
-.loading,
-.error {
-    font-size: 1.2rem;
-    color: red;
+.activeButton {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #0155b0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }

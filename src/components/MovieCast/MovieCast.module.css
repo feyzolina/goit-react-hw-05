@@ -1,36 +1,44 @@
-.castContainer {
+/* MovieCast.module.css */
+.container {
     padding: 20px;
 }
 
 .castList {
-    display: flex;
-    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
-    justify-content: start;
 }
 
-.actorCard {
-    width: 150px;
+.castItem {
     text-align: center;
 }
 
-.actorImage {
+.castItem img {
     width: 100%;
     height: auto;
     border-radius: 8px;
+    margin-bottom: 10px;
 }
 
-.actorInfo {
-    margin-top: 10px;
-}
-
-.actorName {
+.castItem p {
+    font-size: 14px;
     font-weight: bold;
-    font-size: 1rem;
     color: #333;
+    margin-top: 5px;
+    text-transform: capitalize;
 }
 
-.actorCharacter {
-    font-size: 0.9rem;
+.loader {
+    text-align: center;
+    font-size: 18px;
     color: #666;
+}
+
+.error {
+    color: red;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
 }

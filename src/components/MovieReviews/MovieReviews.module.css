@@ -1,0 +1,23 @@
+.reviewsContainer {
+    padding: 20px;
+}
+
+.reviewCard {
+    background-color: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.author {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.content {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 10px;
+}

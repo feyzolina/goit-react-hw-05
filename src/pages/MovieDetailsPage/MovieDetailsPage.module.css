@@ -1,0 +1,70 @@
+.container {
+    padding: 20px;
+}
+
+.goBackButton {
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.goBackButton:hover {
+    background-color: #0056b3;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.details {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.poster {
+    width: 200px;
+    /* Poster boyutunu burada ayarlayabilirsiniz */
+    height: auto;
+    margin-right: 20px;
+    /* Resim ile metin arasındaki boşluk */
+}
+
+.info {
+    flex-grow: 1;
+    /* Film bilgileri sağda tam genişlikte olacak */
+}
+
+.overview {
+    font-size: 1rem;
+    margin-top: 15px;
+    text-align: left;
+}
+
+.buttonContainer {
+    margin-top: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.button:hover {
+    background-color: #218838;
+}
+
+.loading,
+.error {
+    font-size: 1.2rem;
+    color: red;
+}

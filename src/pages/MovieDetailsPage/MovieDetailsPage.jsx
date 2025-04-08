@@ -34,10 +34,13 @@ const MovieDetailsPage = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
- 
+  const goBack = () => {
+    navigate(prevLocation.current, { replace: true });
+  };
+
   return (
     <div className={styles.container}>
-      <button className={styles.goBackButton} onClick={() => navigate(prevLocation.current)}>
+      <button className={styles.goBackButton} onClick={goBack}>
         Go Back
       </button>
 
@@ -63,13 +66,13 @@ const MovieDetailsPage = () => {
 
       <div className={styles.buttonContainer}>
         <button 
-          onClick={() => navigate(`/movies/${movieId}/cast`)} 
+          onClick={() => navigate(`/movies/${movieId}/cast`, { replace: true })} 
           className={location.pathname.endsWith('/cast') ? styles.activeButton : styles.button}
         >
           Cast
         </button>
         <button 
-          onClick={() => navigate(`/movies/${movieId}/reviews`)} 
+          onClick={() => navigate(`/movies/${movieId}/reviews`, { replace: true })} 
           className={location.pathname.endsWith('/reviews') ? styles.activeButton : styles.button}
         >
           Reviews

@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styles from './MovieDetailsPage.module.css';
-import MovieCast from '../../components/MovieCast/MovieCast';
-import MovieReviews from '../../components/MovieReviews/MovieReviews';
+import { Outlet } from 'react-router-dom';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -12,8 +11,7 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [activeTab, setActiveTab] = useState(null);
-  
+
   const prevLocation = useRef(location.state?.from || '/movies');
 
   useEffect(() => {
@@ -33,19 +31,10 @@ const MovieDetailsPage = () => {
     fetchMovieDetails();
   }, [movieId]);
 
-  useEffect(() => {
-    const currentPath = window.location.pathname.split('/').pop();
-    setActiveTab(currentPath);
-  }, [movieId]);
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
-  const handleTabSwitch = (tab) => {
-    setActiveTab(tab);
-    navigate(`/movies/${movieId}/${tab}`);
-  };
-
+ 
   return (
     <div className={styles.container}>
       <button className={styles.goBackButton} onClick={() => navigate(prevLocation.current)}>
@@ -74,21 +63,20 @@ const MovieDetailsPage = () => {
 
       <div className={styles.buttonContainer}>
         <button 
-          onClick={() => handleTabSwitch('cast')} 
-          className={activeTab === 'cast' ? styles.activeButton : styles.button}
+          onClick={() => navigate(`/movies/${movieId}/cast`)} 
+          className={location.pathname.endsWith('/cast') ? styles.activeButton : styles.button}
         >
           Cast
         </button>
         <button 
-          onClick={() => handleTabSwitch('reviews')} 
-          className={activeTab === 'reviews' ? styles.activeButton : styles.button}
+          onClick={() => navigate(`/movies/${movieId}/reviews`)} 
+          className={location.pathname.endsWith('/reviews') ? styles.activeButton : styles.button}
         >
           Reviews
         </button>
       </div>
-      
-      {activeTab === 'cast' && <MovieCast movieId={movieId} />}
-      {activeTab === 'reviews' && <MovieReviews movieId={movieId} />}
+
+      <Outlet />
     </div>
   );
 };

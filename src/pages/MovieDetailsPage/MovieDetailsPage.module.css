@@ -7,7 +7,7 @@
 .goBackButton {
     padding: 10px 15px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #167b7b;
     color: white;
     border: none;
     cursor: pointer;
@@ -16,7 +16,7 @@
 }
 
 .goBackButton:hover {
-    background-color: #0056b3;
+    background-color: #1d8a8a;
 }
 
 .movieHeader {
@@ -68,7 +68,7 @@
 .button {
     padding: 10px 15px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #167b7b;
     color: white;
     border: none;
     cursor: pointer;
@@ -79,7 +79,7 @@
 .activeButton {
     padding: 10px 15px;
     font-size: 16px;
-    background-color: #0155b0;
+    background-color: #1d8a8a;
     color: white;
     border: none;
     cursor: pointer;

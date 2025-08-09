@@ -43,7 +43,7 @@ const MoviesPage = () => {
         );
         setMovies(response.data.results);
       } catch (err) {
-        setError('Something went wrong while fetching movies.');
+        setError(err);
       } finally {
         setLoading(false);
       }

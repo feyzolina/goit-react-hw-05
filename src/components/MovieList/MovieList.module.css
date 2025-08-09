@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+   
 }
 
 .movieListItem {
@@ -21,4 +22,5 @@
     margin-top: 10px;
     font-size: 16px;
     font-weight: bold;
+    
 }

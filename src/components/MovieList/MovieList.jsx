@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './MovieList.module.css';
 
 const MovieList = ({ movies }) => {
@@ -7,7 +7,15 @@ const MovieList = ({ movies }) => {
     <div className={styles.movieList}>
       {movies.map((movie) => (
         <div key={movie.id} className={styles.movieListItem}>
-          <Link to={`/movies/${movie.id}`} state={{ from: '/movies' }}>
+          <NavLink
+            to={`/movies/${movie.id}`}
+            state={{ from: '/movies' }}
+            className={({ isActive }) =>
+              isActive
+                ? `${styles.movieLink} ${styles.active}`
+                : styles.movieLink
+            }
+          >
             {movie.poster_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -18,7 +26,7 @@ const MovieList = ({ movies }) => {
               <div>No Image Available</div>
             )}
             <h3 className={styles.movieTitle}>{movie.title}</h3>
-          </Link>
+          </NavLink>
         </div>
       ))}
     </div>

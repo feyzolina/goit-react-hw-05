@@ -1,6 +1,9 @@
 .container {
   padding: 20px;
 }
+h1{
+  color: #167b7b;
+}
 
 .pageHeader {
   display: flex;
@@ -19,11 +22,11 @@
 }
 
 .homeButton:hover {
-  background-color: #0056b3;
+  background-color: #167b7b;
 }
 
 .activeButton {
-  background-color: #0056b3;
+  background-color: #167b7b;
   cursor: default;
 }
 
@@ -43,7 +46,7 @@
 
 .searchButton {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #167b7b;
   color: white;
   border: none;
   border-radius: 5px;
@@ -52,7 +55,7 @@
 }
 
 .searchButton:hover {
-  background-color: #0056b3;
+  background-color: #20add8;
 }
 
 .loading, .error {

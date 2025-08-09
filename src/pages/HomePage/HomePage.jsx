@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
@@ -34,9 +34,16 @@ const HomePage = () => {
       <div className={styles.movieList}>
         {movies.map(movie => (
           <div key={movie.id} className={styles.movieItem}>
-            <Link to={`/movies/${movie.id}`} className={styles.movieLink}>
+            <NavLink
+              to={`/movies/${movie.id}`}
+              className={({ isActive }) =>
+                isActive
+                  ? `${styles.movieLink} ${styles.active}`
+                  : styles.movieLink
+              }
+            >
               <h3>{movie.title}</h3>
-            </Link>
+            </NavLink>
           </div>
         ))}
       </div>

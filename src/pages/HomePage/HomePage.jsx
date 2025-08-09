@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import MovieList from '../../components/MovieList/MovieList';
-import styles from './HomePage.module.css';
 import { Link } from 'react-router-dom';
+import styles from './HomePage.module.css';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -18,7 +17,7 @@ const HomePage = () => {
         setMovies(response.data.results);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch trending movies');
+        setError(err);
         setLoading(false);
       }
     };
@@ -31,11 +30,6 @@ const HomePage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.navigation}>
-        <Link to="/" className={styles.navButton}>Home</Link>
-        <Link to="/movies" className={styles.navButton}>Movies</Link>
-      </div>
-      
       <h1 className={styles.title}>Trending Today</h1>
       <div className={styles.movieList}>
         {movies.map(movie => (
@@ -51,3 +45,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

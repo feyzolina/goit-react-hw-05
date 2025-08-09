@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation, Outlet } from 'react-router-dom';
 import styles from './MovieDetailsPage.module.css';
-import { Outlet } from 'react-router-dom';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -21,9 +21,9 @@ const MovieDetailsPage = () => {
           `https://api.themoviedb.org/3/movie/${movieId}?language=en-US&api_key=cb0481eb78ee7ce9d53c2d5bfb69e02e`
         );
         setMovie(response.data);
-        setLoading(false);
       } catch (err) {
-        setError('Failed to fetch movie details');
+        setError(err);
+      } finally {
         setLoading(false);
       }
     };
@@ -31,12 +31,16 @@ const MovieDetailsPage = () => {
     fetchMovieDetails();
   }, [movieId]);
 
+  const goBack = () => {
+    navigate(prevLocation.current);
+  };
+
+  const handleNavigate = (subPath) => {
+    navigate(subPath);
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
-
-  const goBack = () => {
-    navigate(prevLocation.current, { replace: true });
-  };
 
   return (
     <div className={styles.container}>
@@ -66,13 +70,13 @@ const MovieDetailsPage = () => {
 
       <div className={styles.buttonContainer}>
         <button 
-          onClick={() => navigate(`/movies/${movieId}/cast`, { replace: true })} 
+          onClick={() => handleNavigate(`/movies/${movieId}/cast`)} 
           className={location.pathname.endsWith('/cast') ? styles.activeButton : styles.button}
         >
           Cast
         </button>
         <button 
-          onClick={() => navigate(`/movies/${movieId}/reviews`, { replace: true })} 
+          onClick={() => handleNavigate(`/movies/${movieId}/reviews`)} 
           className={location.pathname.endsWith('/reviews') ? styles.activeButton : styles.button}
         >
           Reviews

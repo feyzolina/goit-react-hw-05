@@ -1,17 +1,19 @@
 .nav {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    gap: 20px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    
 }
 
 .link {
-    text-decoration: none;
-    padding: 10px 20px;
-    margin: 0 10px;
-    background-color: #007bff;
     color: white;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: #007bff;
 }
 
-.link:hover {
-    background-color: #0056b3;
+.active {
+    font-weight: bold;
+    background-color: #007bff;
 }

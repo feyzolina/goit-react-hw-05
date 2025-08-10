@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import MovieList from '../../components/MovieList/MovieList';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
@@ -15,9 +15,9 @@ const HomePage = () => {
           'https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=cb0481eb78ee7ce9d53c2d5bfb69e02e'
         );
         setMovies(response.data.results);
-        setLoading(false);
       } catch (err) {
         setError(err);
+      } finally {
         setLoading(false);
       }
     };
@@ -31,25 +31,9 @@ const HomePage = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Trending Today</h1>
-      <div className={styles.movieList}>
-        {movies.map(movie => (
-          <div key={movie.id} className={styles.movieItem}>
-            <NavLink
-              to={`/movies/${movie.id}`}
-              className={({ isActive }) =>
-                isActive
-                  ? `${styles.movieLink} ${styles.active}`
-                  : styles.movieLink
-              }
-            >
-              <h3>{movie.title}</h3>
-            </NavLink>
-          </div>
-        ))}
-      </div>
+      <MovieList movies={movies} />
     </div>
   );
 };
 
 export default HomePage;
-

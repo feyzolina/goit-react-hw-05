@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate, useLocation, Outlet } from 'react-router-dom';
+import { useParams, useNavigate, useLocation, Outlet, NavLink } from 'react-router-dom';
 import styles from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = () => {
@@ -12,7 +12,7 @@ const MovieDetailsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const prevLocation = useRef(location.state?.from || '/movies');
+  const prevLocation = useRef(location.state || { from: '/movies' });
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -32,11 +32,7 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const goBack = () => {
-    navigate(prevLocation.current);
-  };
-
-  const handleNavigate = (subPath) => {
-    navigate(subPath);
+    navigate(prevLocation.current.from);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -69,18 +65,24 @@ const MovieDetailsPage = () => {
       </div>
 
       <div className={styles.buttonContainer}>
-        <button 
-          onClick={() => handleNavigate(`/movies/${movieId}/cast`)} 
-          className={location.pathname.endsWith('/cast') ? styles.activeButton : styles.button}
+        <NavLink
+          to={`/movies/${movieId}/cast`}
+          state={prevLocation.current}
+          className={({ isActive }) =>
+            isActive ? styles.activeButton : styles.button
+          }
         >
           Cast
-        </button>
-        <button 
-          onClick={() => handleNavigate(`/movies/${movieId}/reviews`)} 
-          className={location.pathname.endsWith('/reviews') ? styles.activeButton : styles.button}
+        </NavLink>
+        <NavLink
+          to={`/movies/${movieId}/reviews`}
+          state={prevLocation.current}
+          className={({ isActive }) =>
+            isActive ? styles.activeButton : styles.button
+          }
         >
           Reviews
-        </button>
+        </NavLink>
       </div>
 
       <Outlet />
